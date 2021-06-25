@@ -1,0 +1,71 @@
+
+<nz-form-control>
+  <nz-tabset>
+    <nz-tab nzTitle="Product List">
+      <form nz-form class="ant-advanced-search-form" style="margin-bottom: 10px;">
+        <div nz-row [nzGutter]="24">
+          <div nz-col [nzSpan]="24">
+            <nz-form-item>
+              <!-- <nz-form-label>Field </nz-form-label> -->
+              <nz-form-control>
+                <input nz-input placeholder="Full Name" style="width: 100%" />
+              </nz-form-control>
+              <nz-form-control>
+                <input nz-input placeholder="Last Name" style="width: 100%" />
+              </nz-form-control>
+              <nz-form-control>
+                <input nz-input placeholder="Mobile" style="width: 100%" />
+              </nz-form-control>
+              <nz-form-control>
+                <input nz-input placeholder="Email" style="width: 100%" />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+        <div nz-row>
+          <div nz-col [nzSpan]="24" class="search-area">
+            <button nz-button [nzType]="'primary'">Search</button>
+            <button nz-button >Clear</button>
+            <a class="collapse" >
+              Collapse
+              <i nz-icon></i>
+            </a>
+          </div>
+        </div>
+      </form>
+      <nz-table #fixedTable nzBordered [nzLoading]="loading" [(nzPageSize)]="pageSize" [nzData]="listOfData" [nzScroll]="{ x: '1150px', y: '550px' }">
+        <thead>
+          <tr>
+            <th nzWidth="3%"><label nz-checkbox [(ngModel)]="checked"></label></th>
+            <th nzLeft>Full Name</th>
+            <th nzLeft>Last Name</th>
+            <th>Mobile</th>
+            <th>Email</th>
+            <th>Salary</th>
+            <th>Rate</th>
+            <th nzRight>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of fixedTable.data">
+            <td><label nz-checkbox [(ngModel)]="checked" name="id"></label></td>
+            <td nzLeft  name="fname">{{ data.firstName }}</td>
+            <td nzLeft name="lname">{{ data.lastName }}</td>
+            <td name="mobile">{{ data.mobile }}</td>
+            <td name="email">{{ data.email }}</td>
+            <td name="salary">{{ data.salary }}</td>
+            <td name="rate"><nz-rate ngModel="{{data.rate}}" nzDisabled></nz-rate></td>
+            <td name="action" nzRight nzMatchRouter>
+              <button nz-button nzType="default" [nzSize]="size" nzShape="circle" routerLink="/products/{{data.id}}"><i nz-icon nzType="edit" nzTheme="outline"></i>
+               
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </nz-table>
+    </nz-tab>
+    <nz-tab nzTitle="Shipment">
+      
+    </nz-tab>
+  </nz-tabset>
+</nz-form-control>
